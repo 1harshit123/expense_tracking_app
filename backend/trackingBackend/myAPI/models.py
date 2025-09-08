@@ -18,5 +18,5 @@ class Expense(models.Model):
     date = models.DateField()
     description = models.TextField(blank=True, null=True)
     def __str__(self):
-        return f"{self.user.username} Expenses"
+        return f"{self.user.user.username} Expenses"
     
