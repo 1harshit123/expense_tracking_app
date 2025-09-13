@@ -22,28 +22,29 @@ class RegistrationSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         if(attrs['password'] != attrs['password1']):
             raise serializers.ValidationError({"Password" : "Password must match"})
+        else:
+            return attrs
     
 
     def create(self, validated_data):
-        validated_data.pop('password')
+        validated_data.pop('password1')
         user = User.objects.create_user(
             username = validated_data['username'],
             email = validated_data.get('email'),
             password = validated_data['password']
         )
+        UserProfile.objects.create(user = user)
         return user
         
     
 
 class LoginSerializer(serializers.Serializer):
-    identifier = serializers.CharField()   # can be username or email
+    identifier = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
     def validate(self, data):
         identifier = data.get("identifier")
         password = data.get("password")
-
-        # 1️⃣ Try to detect if identifier is an email
         try:
             validate_email(identifier)
             user_obj = User.objects.filter(email__iexact=identifier).first()
