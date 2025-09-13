@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'myAPI',
     'rest_framework.authtoken',
+    "rest_framework_simplejwt.token_blacklist"
 ]
 
 REST_FRAMEWORK = {
@@ -49,6 +50,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
     ],
     'DEFAULT_AUTHENTICATION_CLASSED': [
         'rest_framwork.authentication'
