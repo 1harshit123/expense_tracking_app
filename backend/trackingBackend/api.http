@@ -3,10 +3,10 @@ POST http://127.0.0.1:8000/api/register/
 Content-Type: application/json
 
 {
-  "username": "testuser4",
-  "email": "tes2t@example.com",
-  "password": "testpass121213",
-  "password1": "testpass121213"
+  "username": "testuser6",
+  "email": "tes2t@exampe.com",
+  "password": "testpass1",
+  "password1": "testpass1"
 }
 
 ### Login user
@@ -14,12 +14,16 @@ POST http://127.0.0.1:8000/api/login/
 Content-Type: application/json
 
 {
-  "identifier": "testuser4",
-  "password": "testpass121213"
+  "identifier": "tes2t@exampe.com",
+  "password": "testpass1"
 }
 
 ### Logout user
 POST http://127.0.0.1:8000/api/logout/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3ODAyMTQ0LCJpYXQiOjE3NTc4MDE4NDQsImp0aSI6IjViOWIwMzM5OWQ1MDRlMjViODI2MmNkZjA3Mzc4OTBhIiwidXNlcl9pZCI6IjYifQ.nXBhOCbdPqDeXlNaOOvIivw9Jx7kByE0D3FnKYSH4LU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3ODg0MjA1LCJpYXQiOjE3NTc4ODM5MDUsImp0aSI6ImFkYmM4Yjk2YTdkOTQ1ZGNhMjE3NTY3OGFhYWQwNGQ1IiwidXNlcl9pZCI6IjcifQ.QKKNu52HdIKQ-QRA3Zt7ObAqWAMPGCViHppYBtDs1gg
+
+
+### Checking the login status
+GET http://127.0.0.1:8000/api/login_status/
 

@@ -1,5 +1,5 @@
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from .models import UserProfile, Expense
@@ -9,6 +9,8 @@ from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import authentication
+   
 
 
 @api_view(['POST'])
@@ -64,7 +66,22 @@ def user_logout(request):
         return Response({'detail': 'Token is invalid or expired'}, status=status.HTTP_401_UNAUTHORIZED)
     except Exception as e:
         return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def check_login_status(request):
+    if(request.user.is_authenticated):
+        serializer = UserProfileSerializer(request.user)
+        return Response({
+            'is_logged_in': True,
+            'user': serializer.data
+        }, status=status.HTTP_200_OK)
+    else:
+        return Response({
+            'is_logged_in': False,
+            'message': 'No user is currently logged in.'
+        }, status=status.HTTP_200_OK)
 
 
 def getting_daily_expenses(request):
