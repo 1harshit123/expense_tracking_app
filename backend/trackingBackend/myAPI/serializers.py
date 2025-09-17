@@ -59,7 +59,7 @@ class LoginSerializer(serializers.Serializer):
         raise serializers.ValidationError("Invalid credentials")
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)  # nested user serializer
+    user = UserSerializer(read_only=True) 
     class Meta:
         model = UserProfile
         fields = ['id', 'user', 'income', 'savings']
@@ -67,4 +67,4 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class ExpenseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Expense
-        fields = ['id', 'user', 'amount', 'date', 'description']
+        fields = ['id', 'amount', 'date', 'description']

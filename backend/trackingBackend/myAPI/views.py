@@ -83,7 +83,21 @@ def check_login_status(request):
             'message': 'No user is currently logged in.'
         }, status=status.HTTP_200_OK)
 
-
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def getting_daily_expenses(request):
     if request.method == 'POST':
-        serializer = ExpenseSerializer()
+        serializer = ExpenseSerializer(data = request.data)
+        serializer.save()
+        return Response(
+            {
+                'user': serializer.user,
+                'data': serializer.data
+            }, status=status.HTTP_200_OK
+        )
+    else:
+        return Response(
+            {
+                'message': 'Some error with the view and serilizer'
+            }, status=status.HTTP_400_BAD_REQUEST
+        )
