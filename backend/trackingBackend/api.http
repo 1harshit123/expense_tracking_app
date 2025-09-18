@@ -27,3 +27,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ### Checking the login status
 GET http://127.0.0.1:8000/api/login_status/
 
+
+
+### adding expenses
+POST http://127.0.0.1:8000/api/expense_add/
+Content-Type: application/json
+
+{
+  "identifier": "tes2t@exampe.com",
+  "password": "testpass1"
+}
+
