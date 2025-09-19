@@ -34,7 +34,8 @@ POST http://127.0.0.1:8000/api/expense_add/
 Content-Type: application/json
 
 {
-  "identifier": "tes2t@exampe.com",
-  "password": "testpass1"
+  "amount": 1200.50,
+  "date": "2025-09-17",
+  "description": "Bought groceries and snacks"
 }
 

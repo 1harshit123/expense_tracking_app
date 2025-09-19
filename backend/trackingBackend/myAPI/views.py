@@ -72,7 +72,8 @@ def user_logout(request):
 @permission_classes([AllowAny])
 def check_login_status(request):
     if(request.user.is_authenticated):
-        serializer = UserProfileSerializer(request.user)
+        user_profile = UserProfile.objects.get(user = request.user)
+        serializer = UserProfileSerializer(user_profile)
         return Response({
             'is_logged_in': True,
             'user': serializer.data
@@ -81,7 +82,7 @@ def check_login_status(request):
         return Response({
             'is_logged_in': False,
             'message': 'No user is currently logged in.'
-        }, status=status.HTTP_200_OK)
+        }, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
