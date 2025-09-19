@@ -87,21 +87,20 @@ def check_login_status(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def daily_expenses(request):
-    if request.method == 'POST':
-        serializer = ExpenseSerializer(data = request.data)
-        if serializer.is_valid():
-            user_profile = UserProfile.objects.get(data = request.data)
-            serializer.save(user = user_profile)
-            return Response({
-                'user': UserProfile(request.user).data,
-                'Details': request.data
-            }, status = status.HTTP_400_BAD_REQUEST)
-    else:
-        return Response(
-            {
-                'message': 'Some error with the view and serilizer'
-            }, status=status.HTTP_400_BAD_REQUEST
-        )
+    serializer = ExpenseSerializer(data=request.data)
+    if serializer.is_valid():
+        user_profile = UserProfile.objects.get(user=request.user)
+        
+        expense = serializer.save(user=user_profile)
+
+        return Response({
+            'message': 'Expense added successfully',
+            'user': UserProfileSerializer(user_profile).data,
+            'expense': ExpenseSerializer(expense).data
+        }, status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

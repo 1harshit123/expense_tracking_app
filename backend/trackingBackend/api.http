@@ -28,14 +28,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 GET http://127.0.0.1:8000/api/login_status/
 
 
+### Refresh Access Token
+POST http://127.0.0.1:8000/api/token/refresh/
+Content-Type: application/json
+
+{
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1ODM2NDg2MiwiaWF0IjoxNzU4Mjc4NDYyLCJqdGkiOiJhZDkxODhiMTc5Mzg0ODkzOTMwNGRhZDdhNTI3ZWU1YSIsInVzZXJfaWQiOiI3In0.20MPOKluxXGm3moTYNrwm64ODA1SDnffrMGaTr86Byc"
+}
 
 ### adding expenses
 POST http://127.0.0.1:8000/api/expense_add/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4Mjc3ODMzLCJpYXQiOjE3NTgyNzc1MzMsImp0aSI6ImFiMjA4NGZiOGJmMjQwYWNiYTkzMmE4NTdlOWY3Y2EyIiwidXNlcl9pZCI6IjcifQ.DfaNtYIqMThdBb5X-iydfreBHTpI_CV2BdR8BOaYqO4
 
 {
   "amount": 1200.50,
   "date": "2025-09-17",
   "description": "Bought groceries and snacks"
 }
+
+
+### Getting expense details
+GET  http://127.0.0.1:8000/api/get_expense_details/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4Mjc4Nzg3LCJpYXQiOjE3NTgyNzg0ODcsImp0aSI6IjNkZDY5YzBhYWQ3YTQ5ODFiMjMwYmQ2OTc3MDliN2UyIiwidXNlcl9pZCI6IjcifQ.8iMUF403CShpBHZiJIFneR4Bv7NXSgkkJFTLzEhk94k
+
 
