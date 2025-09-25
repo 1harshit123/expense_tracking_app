@@ -6,32 +6,24 @@ function App() {
 
   return (
     <>
-      <nav className="bg-gray-300 w-full">
+      <nav className="bg-gray-300 w-full mb-4">
         <div className="w-full flex justify-between items-center px-7 py-4">
 
           {/* Logo */}
           <div>
-            <img src="/cash.svg" alt="Cash Icon" width="50" fill="green"/>
+            <img src="/cash.svg" alt="Cash Icon" width="50" style={{ fill: "green" }} />
           </div>
 
           {/* Navigation Links */}
           <div className="flex items-center justify-center">
             <ul className="flex font-semibold space-x-4">
-              <li className="md:px-4 md:py-2 text-indigo-500">
-                <a href="#">Dashboard</a>
-              </li>
-              <li className="md:px-4 md:py-2 hover:text-indigo-400">
-                <a href="#">Search</a>
-              </li>
-              <li className="md:px-4 md:py-2 hover:text-indigo-400">
-                <a href="#">Explore</a>
-              </li>
-              <li className="md:px-4 md:py-2 hover:text-indigo-400">
-                <a href="#">About</a>
-              </li>
-              <li className="md:px-4 md:py-2 hover:text-indigo-400">
-                <a href="#">Contact</a>
-              </li>
+              {["Dashboard", "Search", "Explore", "About", "Contact"].map((item) => (
+                <li key={item}>
+                  <a href="#" className="navbar-link" data-text={item}>
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -48,8 +40,26 @@ function App() {
         </div>
       </nav>
 
-      <div>
-        <div></div>
+
+
+      <div className='w-full'>
+          <div className='flex flex-col gap-4 justify-cetner w-4/7'>
+          <div className='flex justify-left items-center ml-6'>
+            <div className='flex justify-center items-center gap-1 '>
+              <button className='bg-green-400 text-white rounded items-center px-3 py-1 '>Add</button>
+              <input className="border-b-1 focus:outline-none" type="text" placeholder='Enter amount here'/>
+            </div>
+          </div>
+          <div className="border-2 border-gray-300 rounded-2xl h-screen m-3 shadow-lg bg-gradient-to-br from-white via-gray-50 to-gray-100 hover:shadow-2xl hover:scale-[1.00001] transition-all duration-300 ease-in-out p-6"> 
+              fgd
+            </div>
+          </div>
+          <div>
+          </div>
+        <div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
 
     </>

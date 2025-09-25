@@ -1,1 +1,35 @@
 @import "tailwindcss";
+/* Font import */
+
+/* Navbar link hover effect */
+/* Navbar link highlight animation */
+.navbar-link {
+    position: relative;
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    padding: 0.5em 1em;
+    transition: color 0.3s;
+}
+
+.navbar-link::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.5em 1em;
+    color: #fff;
+    overflow: hidden;
+    transform: scale(1.2);
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.navbar-link:hover::before {
+    transform: scale(1);
+    opacity: 1;
+}
