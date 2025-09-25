@@ -1,4 +1,9 @@
 import { useState } from 'react'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import Box from '@mui/material/Box';
 
 import './App.css'
 
@@ -42,7 +47,7 @@ function App() {
 
 
 
-      <div className='w-full'>
+      <div className='w-full flex jutify-center gap-3'>
           <div className='flex flex-col gap-4 justify-cetner w-4/7'>
           <div className='flex justify-left items-center ml-6'>
             <div className='flex justify-center items-center gap-1 '>
@@ -54,10 +59,20 @@ function App() {
               fgd
             </div>
           </div>
+        <div>  
           <div>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+             <Box sx={{ width: 350, height: 350 }}>
+                <DateCalendar
+                  sx={{
+                    // Apply the transform to scale the calendar up by 20%
+                    transform: 'scale(1.3)',
+                    // Set the origin point for the scaling
+                    transformOrigin: 'top left',}}
+                />
+              </Box>
+            </LocalizationProvider>
           </div>
-        <div>
-          <div></div>
           <div></div>
         </div>
       </div>
