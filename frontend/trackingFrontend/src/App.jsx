@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -7,6 +6,7 @@ import Box from '@mui/material/Box';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { dataset, valueFormatter, desktopOS, valueFormatter1 } from './datasets/graphData';
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
+import { useState } from 'react';
 
 import './App.css'
 
@@ -59,6 +59,7 @@ const SketchyArrowIcon = ({
 };
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       {/* Navbar */}
@@ -98,16 +99,51 @@ function App() {
       <div className="w-full flex justify-center items-start gap-5 px-5">
 
         {/* Left Section */}
-        <div className="flex flex-col gap-6 w-3/5">
+        <div className="flex flex-col gap-3 w-3/5 mr-3">
           {/* Add Input */}
-          <div className="flex items-center gap-2 ml-4">
-            <button className="bg-green-400 text-white rounded px-3 py-1">Add</button>
+          <div className="flex flex-col gap-3 w-full p-4 border-2 border-gray-300 rounded-2xl shadow-lg bg-gradient-to-br from-white via-gray-50 to-gray-100 hover:shadow-2xl transition-all duration-300 ease-in-out">
+            {/* Item Name */}
             <input
-              className="border-b border-gray-400 focus:outline-none px-2 w-full max-w-xs"
+              className="border-b border-gray-400 focus:outline-none px-2 py-1 w-full"
               type="text"
-              placeholder="Enter amount here"
+              placeholder="Enter item name"
             />
+
+            {/* Item Description */}
+            <input
+              className="border-b border-gray-400 focus:outline-none px-2 py-1 w-full"
+              type="text"
+              placeholder="Enter item description"
+            />
+
+            {/* Category */}
+            <select
+              className="border-b border-gray-400 focus:outline-none px-2 py-1 w-full bg-transparent"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Select category
+              </option>
+              <option value="fruits">Fruits</option>
+              <option value="vegetables">Vegetables</option>
+              <option value="dairy">Dairy</option>
+              <option value="snacks">Snacks</option>
+              <option value="beverages">Beverages</option>
+            </select>
+
+            {/* Amount + Add button */}
+            <div className="flex items-center gap-2">
+              <input
+                className="border-b border-gray-400 focus:outline-none px-2 py-1 w-full"
+                type="number"
+                placeholder="Enter amount"
+              />
+              <button className="bg-green-400 text-white rounded px-4 py-2">
+                Add
+              </button>
+            </div>
           </div>
+
 
           {/* Bar Chart */}
           <div className="w-full border-2 border-gray-300 rounded-2xl h-[500px] shadow-lg bg-gradient-to-br from-white via-gray-50 to-gray-100 hover:shadow-2xl transition-all duration-300 ease-in-out p-6">
@@ -161,15 +197,28 @@ function App() {
             </LocalizationProvider>
           </div>
 
-          {/* Placeholder */}
-          <div className="border-2 border-gray-300 rounded-2xl h-96 w-full flex items-center justify-center">
-            <div className='w-full mx-2 my-3 border'>
-              <div className='flex justify-between items-center px-4'>
-                <span>6 banans</span>
-                <span>50</span>
+          <div className="border-2 border-gray-300 rounded-2xl h-96 w-full flex items-center justify-center mb-5">
+            <div
+              className="w-full mx-2 my-3 flex flex-col justify-between items-center cursor-pointer select-none"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {/* Header */}
+              <div className="w-full flex justify-between items-center px-4 rounded-2xl border">
+                <span className="text-2xl">6 bananas</span>
+                <span className="text-3xl">₹50</span>
               </div>
-              <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lore</div>
+
+              {/* Dropdown with fade+slide animation */}
+              <div
+                className={`px-3 py-2 border w-[96%] rounded-md bg-white shadow-md 
+      transition-all duration-200 ease-in-out
+      ${isOpen ? "opacity-100 translate-y-0 mt-2" : "opacity-0 -translate-y-1 pointer-events-none"}
+    `}
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lore
+              </div>
             </div>
+
           </div>
         </div>
       </div>
